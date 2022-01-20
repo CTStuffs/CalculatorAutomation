@@ -15,11 +15,17 @@ class CalculatorPage
 
 
     def initialize(driver, url)
-        super
+        superef select_build(build)
+        dropdown 
     end
 
 
-    def select_build(build)
+    d= @@driver.find_element(BUILD_DROPDOWN)
+        choose = Selenium::WebDriver::Support::Select.new(dropdown)
+        
+        dropdown.click
+        choose.select_by(:value, build)
+
 
     end
 
