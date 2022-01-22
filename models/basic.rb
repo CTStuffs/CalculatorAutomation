@@ -6,7 +6,7 @@ class BasicModel
 
     def initialize(driver, url)
         @@driver = driver
-        @@BASE_URL
+        @@BASE_URL = url
     end
 
 
