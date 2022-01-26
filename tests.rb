@@ -152,6 +152,36 @@ class CalculatorTests < MiniTest::Test
     def test_concat_5
         perform_operation("Concatenate", "       ", "         3", "                   3")
     end
+
+    def test_blank_field
+        @calculator.click_calc
+        answer = @calculator.check_answer
+        assert_equal("0", answer) 
+    end
+
+    def test_blank_field_2
+        @calculator.select_operation("Multiply")
+        @calculator.enter_first_num(30)
+        @calculator.click_calc
+        answer = @calculator.check_answer
+        assert_equal("0", answer)
+    end
+
+    def test_blank_field_3
+        @calculator.select_operation("Subtract")
+        @calculator.enter_second_num(15)
+        @calculator.click_calc
+        answer = @calculator.check_answer
+        assert_equal("-15", answer)
+    end
+
+    def test_blank_field_4
+        @calculator.select_operation("Divide")
+        @calculator.enter_first_num(31110)
+        @calculator.click_calc
+        assert_equal(@calculator.check_error_msg, "Divide by zero error!")
+    end
+
         
     # def test_subtraction_1
     #     @calculator.select_operation("Subtract")
