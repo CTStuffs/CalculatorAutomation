@@ -11,7 +11,7 @@ class CalculatorPage < BasicModel
     ANSWER_FIELD = { id: 'numberAnswerField'}
     INTEGERS_ONLY = { id: 'integerSelect'}
     CLEAR_BTN = { id: 'clearButton'}
-    ERORR_MSG = { id: 'errorMsgField'}
+    ERROR_MSG = { id: 'errorMsgField'}
 
 
     def initialize(driver, url)
@@ -34,6 +34,9 @@ class CalculatorPage < BasicModel
 
 
     def select_build(build)
+
+      
+
         dropdown = @@driver.find_element(BUILD_DROPDOWN)
         choose = Selenium::WebDriver::Support::Select.new(dropdown)
         
@@ -60,10 +63,28 @@ class CalculatorPage < BasicModel
     end
 
     def select_operation(op)
+
+        val = "0"
+        case op
+        when "Add"
+            val = "0"
+        when "Subtract"
+            val = "1"
+        when "Multiply"
+            val = "2"
+        when "Divide"
+            val = "3"
+        when "Concatenate"
+            val = "4"
+        else
+            val = "ERROR"
+        end
+
         dropdown = @@driver.find_element(OPERATION_DROPDOWN)
         choose = Selenium::WebDriver::Support::Select.new(dropdown)
         
         dropdown.click
+        choose.select_by(:value, val)
     end
 
     def click_calc
